@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import {useDispatch} from 'react-redux'
 import authService from './appwrite/auth'
 import {login,logout} from './store/authSlice'
+import {Footer, Header} from './components/index'
 import './App.css'
-
+import {Outlet} from 'react-router-dom'
 function App() {
   const [loading, setloading] = useState(true)
   const dispatch = useDispatch()
@@ -21,7 +22,9 @@ function App() {
   },[])
   return !loading ? (
     <div className=' min-h-sc '>
-      Test
+      <Header/>
+      <Outlet/>
+      <Footer/>
     </div>
   ) : (null)
 }
