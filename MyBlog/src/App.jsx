@@ -13,7 +13,7 @@ function App() {
     authService.getCurrentUser()
     .then((userDate)=>{
       if (userDate) {
-        dispatch(login({userDate}))
+        dispatch(login({userData:userDate}))
       }else{
         dispatch(logout())
       }
