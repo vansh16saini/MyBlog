@@ -79,12 +79,12 @@ export class Service{
             
         }
     }
-    async getPosts(queries = [Query.equal("status", true)]){
+    async getPosts(){
         try {
             return await this.tablesDB.listRows({
                 databaseId: conf.appwriteDatabaseId,
                 tableId: conf.appwriteCollectionId,
-                queries,
+                queries: [Query.equal("status", "active")]
             })
         } catch (error) {
             console.log("Appwrite service :: getPosts :: ",error);
@@ -118,8 +118,8 @@ export class Service{
         }
     }
     
-    getFilePreview(fileId){
-        return this.storage.getFilePreview({
+    getFileView(fileId){
+        return this.storage.getFileView({
             bucketId: conf.appwriteBucketId,
             fileId: fileId,
         })

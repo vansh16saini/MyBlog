@@ -1,15 +1,21 @@
-import React,{useEffect, useState} from 'react'
-import service from '../appwrite/config'
-import { Container, PostCard} from '../components'
+import React, {useEffect, useState} from 'react'
+import service from "../appwrite/config";
+import {Container, PostCard} from '../components'
+
 function Home() {
-    const [posts,setPost] = useState([])
-    useEffect(()=>{
-        service.getPosts([]).then((posts)=> {
-            if(posts){
-                setPost(posts.documents)
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        service.getPosts().then((posts) => {
+            if (posts && posts.rows) {
+                setPosts(posts.rows)
             }
         })
-    },[])
+        .catch((error) => {
+            console.error("Error fetching posts:", error);
+        });
+    }, [])
+  
     if (posts.length === 0) {
         return (
             <div className="w-full py-8 mt-4 text-center">
@@ -17,7 +23,7 @@ function Home() {
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-2xl font-bold hover:text-gray-500">
-                                Login to read posts
+                                No Posts available
                             </h1>
                         </div>
                     </div>

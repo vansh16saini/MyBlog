@@ -2,25 +2,29 @@ import React , {useState, useEffect}from 'react'
 import service from '../appwrite/config'
 import { Container, PostCard} from '../components'
 export default function AllPosts() {
-    const [posts,setPost] = useState([])
-    useEffect(()=>{},[])
-    service.getPosts([]).then((posts)=> {
-        if(posts){
-            setPost(posts.documents)
+    const [posts,setPosts] = useState([])
+    useEffect(()=>{
+            service.getPosts().then((posts)=> {
+        console.log("Response",posts);
+        
+        if(posts && posts.rows){
+            setPosts(posts.rows)
         }
     })
+    },[])
 
+    
   return (
     <div className='w-full py-8'>
         <Container>
             <div className='flex flex-wrap'>
-                {posts.map((post)=>{
-                    <div key ={post.$id} className='p-2 w-1/4'>
-                        <PostCard {...post}/>
+                {posts.map((post) => (
+                    <div key={post.$id} className='p-2 w-1/4'>
+                        <PostCard {...post} />
                     </div>
-                })}
+                ))}
             </div>
-        </Container>
+            </Container>
     </div>
   )
 }
