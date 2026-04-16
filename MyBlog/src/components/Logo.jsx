@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Logo({width = '100px'}) {
+function Logo() {
   return (
-    <div className=''>Logo</div>
+    <h2 className="mr-8 text-xl md:text-2xl font-bold tracking-tight uppercase text-[var(--color-primary)]">
+      MyBlog
+    </h2>
   )
 }
 

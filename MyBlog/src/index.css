@@ -1,1 +1,28 @@
-@import "tailwindcss"
+@import "tailwindcss";
+:root {
+  --color-background: #131313;
+  --color-surface: #1c1b1b;
+  --color-primary: #ffc174;
+  --color-primary-dim: #f59e0b;
+  --color-text: #e5e2e1;
+  --color-muted: #d8c3ad;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+body {
+  @apply bg-[var(--color-background)] text-[var(--color-text)] antialiased overflow-x-hidden;
+}
+
+/* utility extensions */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+.tonal-bg {
+  background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.05), transparent 40%);
+}

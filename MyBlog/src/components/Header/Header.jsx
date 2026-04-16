@@ -34,34 +34,31 @@ function Header() {
     },
   ]
   return (
-    <header className='py-3 shadow bg-gray-500'>
-      <Container>
-        <nav className='flex'>
-          <div className='mr-4'>
+        <nav className='fixed top-0 w-full z-50 bg-[var(--color-background)]/40 backdrop-blur-xl border-b border-white/5"'>
+          <div className='max-w-[1920px] mx-auto px-6 py-4 flex items-center'>
             <Link to='/'>
               <Logo width='70px'/>
             </Link>
-          </div>
-          <ul className='flex ml-auto'>
-            {navItems.map((item)=>
-              item.active ? (
-                <li key={item.name}>
-                  <button
-                  onClick={()=>navigate(item.slug)}
-                  className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
-                  >{item.name}</button>
+
+            <ul className='flex items-center ml-auto space-x-6'>
+              {navItems.map((item)=>
+                item.active ? (
+                  <li key={item.name}>
+                    <button
+                    onClick={()=>navigate(item.slug)}
+                    className='px-6 py-2 text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-all duration-300 font-medium tracking-tight'
+                    >{item.name}</button>
+                  </li>
+                ) : null
+              )}
+              {authStatus && (
+                <li>
+                  <LogoutBtn/>
                 </li>
-              ) : null
-            )}
-            {authStatus && (
-              <li>
-                <LogoutBtn/>
-              </li>
-            )}
-          </ul>
+              )}
+            </ul>
+          </div>
         </nav>
-      </Container>
-    </header>
   )
 }
 
