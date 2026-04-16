@@ -5,7 +5,6 @@ export default function AllPosts() {
     const [posts,setPosts] = useState([])
     useEffect(()=>{
             service.getPosts().then((posts)=> {
-        console.log("Response",posts);
         
         if(posts && posts.rows){
             setPosts(posts.rows)
@@ -15,16 +14,18 @@ export default function AllPosts() {
 
     
   return (
-    <div className='w-full pt-20'>
+    <div className="w-full pt-24">
+    
         <Container>
-            <div className='flex flex-wrap'>
-                {posts.map((post) => (
-                    <div key={post.$id} className='p-2 w-1/4'>
-                        <PostCard {...post} />
-                    </div>
-                ))}
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {posts.map((post) => (
+                <PostCard key={post.$id} {...post} />
+            ))}
             </div>
-            </Container>
+
+        </Container>
+
     </div>
   )
 }

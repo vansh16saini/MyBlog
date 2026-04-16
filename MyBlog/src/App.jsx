@@ -21,9 +21,11 @@ function App() {
     .finally(()=> setloading(false))
   },[])
   return !loading ? (
-    <div className=' min-h-sc '>
+    <div className='min-h-screen flex flex-col'>
       <Header/>
-      <Outlet/>
+      <main className="grow">
+          <Outlet />
+      </main>
       <Footer/>
     </div>
   ) : (null)

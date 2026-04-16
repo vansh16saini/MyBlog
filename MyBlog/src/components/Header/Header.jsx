@@ -46,7 +46,7 @@ function Header() {
                   <li key={item.name}>
                     <button
                     onClick={()=>navigate(item.slug)}
-                    className='px-6 py-2 text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-all duration-300 font-medium tracking-tight'
+                    className='px-6 py-2 text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-all duration-300 font-medium tracking-tight cursor-pointer'
                     >{item.name}</button>
                   </li>
                 ) : null

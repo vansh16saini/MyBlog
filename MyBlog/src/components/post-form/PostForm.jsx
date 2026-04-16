@@ -69,49 +69,51 @@ function PostForm({post}) {
         }
     },[watch,slugTransform,setValue])
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row gap-8 max-w-[1920px] mx-auto px-6 py-12">
+            <div className="w-full md:w-2/3 space-y-5">
                 <Input
                     label="Title :"
                     placeholder="Title"
-                    className="mb-4"
+                    className="bg-[var(--color-surface)] text-[var(--color-text)] border border-white/10 focus:border-[var(--color-primary)]"
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug :"
                     placeholder="Slug"
-                    className="mb-4"
+                    className="bg-[var(--color-surface)] text-[var(--color-text)] border border-white/10 focus:border-[var(--color-primary)]"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <div className='border border-white/10 rounded-lg overflow-hidden '>
+                    <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                </div>
             </div>
-            <div className="w-1/3 px-2">
+            <div className="w-full md:w-1/3 space-y-5">
                 <Input
                     label="Featured Image :"
                     type="file"
-                    className="mb-4"
+                    className="bg-[var(--color-surface)] text-[var(--color-text)] border border-white/10 focus:border-[var(--color-primary)]"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
                 />
                 {post && (
-                    <div className="w-full mb-4">
+                    <div className="w-full">
                         <img
                             src={service.getFileView(post.featuredImage)}
                             alt={post.title}
-                            className="rounded-lg"
+                            className="rounded-lg border border-white/10"
                         />
                     </div>
                 )}
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
-                    className="mb-4"
+                    className="bg-transparent border border-white/10 focus:border-[var(--color-primary)] text-[var(--color-muted)]"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" variant='primary' className="w-full cursor-pointer">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>

@@ -2,7 +2,6 @@ import React, {useId} from 'react'
 
 function Select({
     options = [],
-    label,
     className = '',
     ref,    
     ...props
@@ -10,20 +9,22 @@ function Select({
 }) {
     const id = useId()
   return (
-    <div className='w-full'>
-        {label && <label htmlFor={id} className=''></label>}
-        <select 
-        {...props}
-        className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
-        id={id}
-        ref={ref}>
-            {options?.map((option) => (
-                <option key = {option} value = {option}>
-                    {option}
-                </option>
-            ))}
-        </select>
-    </div>
+<select
+  {...props}
+  id={id}
+  ref={ref}
+  className={`w-full px-3 py-2 rounded-lg bg-[var(--color-surface)] text-[var(--color-text)] border border-white/10 outline-none transition-all duration-200 focus:border-[var(--color-primary)] ${className}`}
+>
+  {options?.map((option) => (
+    <option
+      key={option}
+      value={option}
+      className="bg-[var(--color-surface)] text-[var(--color-text)]"
+    >
+      {option}
+    </option>
+  ))}
+</select>
   )
 }
 

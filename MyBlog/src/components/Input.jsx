@@ -12,24 +12,24 @@ function Input(
   const id = useId();
 
   return (
-    <div className="w-full">
+  <div className="w-full space-y-1">
       {label && (
-        <label htmlFor={id} className="inline-block mb-1 pl-1">
+        <label
+          htmlFor={id}
+          className="text-sm font-medium text-[var(--color-muted)]"
+        >
           {label}
         </label>
       )}
+
       <input
         id={id}
         type={type}
         ref={ref}
         {...props}
-        className={`
-          px-3 py-2 rounded-lg bg-white text-black 
-          outline-none focus:bg-gray-50 duration-200 
-          border border-gray-200 w-full ${className}
-        `}
+        className={`w-full px-3 py-2 rounded-lg bg-[var(--color-surface)] text-[var(--color-text)] border border-white/10 outline-none transition-all duration-200 focus:border-[var(--color-primary)] placeholder:text-[var(--color-muted)] ${className}`}
       />
-    </div>
+  </div>
   );
 }
 
