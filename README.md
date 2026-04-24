@@ -19,5 +19,3 @@ MyBlog is a modern full-stack blogging platform that enables users to create, ed
 - **Routing:** React Router
 - **Forms:** React Hook Form
 - **Editor:** TinyMCE
-
-## 📂 Project Structure
